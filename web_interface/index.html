@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Speaking Test Simulator</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/ielts-test.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>IELTS Speaking Test Simulator</h1>
+        </header>
+        
+        <main>
+            <div class="test-interface">
+                <div class="examiner-section">
+                    <div class="examiner-photo">
+                        <img src="images/examiner.jpg" alt="IELTS Examiner" id="examiner-image">
+                    </div>
+                    <div class="examiner-info">
+                        <h2>IELTS Examiner</h2>
+                        <div class="status" id="examiner-status">Connecting to system...</div>
+                    </div>
+                </div>
+                
+                <div class="test-section">
+                    <div class="test-part">
+                        <h3>Current Part: <span id="current-part">Introduction</span></h3>
+                        <div class="part-description" id="part-description">
+                            Welcome to the IELTS Speaking Test. The test will start when you click "Begin Test".
+                        </div>
+                    </div>
+                    
+                    <div class="question-display" id="question-display">
+                        <!-- Questions will be displayed here -->
+                        <p class="question">Press "Begin Test" to start.</p>
+                    </div>
+                    
+                    <div class="controls">
+                        <div class="control-buttons">
+                            <button id="begin-btn" class="btn primary-btn">
+                                <i class="fas fa-play"></i> Begin Test
+                            </button>
+                            <button id="play-btn" class="btn action-btn" disabled>
+                                <i class="fas fa-volume-up"></i> Play Audio
+                            </button>
+                            <button id="record-btn" class="btn action-btn" disabled>
+                                <i class="fas fa-microphone"></i> Start Recording
+                            </button>
+                            <button id="stop-btn" class="btn action-btn" disabled>
+                                <i class="fas fa-stop"></i> Stop Recording
+                            </button>
+                        </div>
+                        
+                        <div class="audio-visualizer">
+                            <canvas id="visualizer" height="60"></canvas>
+                        </div>
+                        
+                        <div class="timer" id="timer">00:00</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-progress">
+                <div class="progress-bar">
+                    <div class="progress" id="progress-indicator"></div>
+                </div>
+                <div class="progress-labels">
+                    <span>Introduction</span>
+                    <span>Part 1</span>
+                    <span>Part 2</span>
+                    <span>Part 3</span>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>IELTS Speaking Test Simulator © 2025</p>
+        </footer>
+    </div>
+    
+    <!-- Load scripts -->
+    <script src="js/ielts-test-flow.js"></script>
+    <script src="js/api-client.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

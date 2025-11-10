@@ -1,0 +1,8 @@
+Defaulting to user installation because normal site-packages is not writeable
+Collecting SpeechRecognition
+  Downloading speechrecognition-3.14.3-py3-none-any.whl.metadata (30 kB)
+Requirement already satisfied: typing-extensions in c:\users\evan\appdata\roaming\python\python311\site-packages (from SpeechRecognition) (4.15.0)
+Downloading speechrecognition-3.14.3-py3-none-any.whl (32.9 MB)
+   ---------------------------------------- 32.9/32.9 MB 8.5 MB/s eta 0:00:00
+Installing collected packages: SpeechRecognition
+Successfully installed SpeechRecognition-3.14.3

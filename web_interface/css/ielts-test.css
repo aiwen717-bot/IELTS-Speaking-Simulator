@@ -1,0 +1,447 @@
+/* IELTS Test Specific Styles */
+
+/* Cue Card */
+.cue-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.cue-card h4 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.cue-card p {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.cue-card ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.cue-card li {
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+/* Test Phases */
+.test-phase {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.test-phase.active {
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+/* Timer Styles */
+.timer.preparation {
+    color: var(--warning-color);
+}
+
+.timer.speaking {
+    color: var(--accent-color);
+}
+
+/* Topic Label */
+.topic-label {
+    display: inline-block;
+    background-color: var(--light-color);
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+/* Part 2 Preparation Mode */
+.preparation-mode {
+    background-color: #fff8e1;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--warning-color);
+}
+
+.preparation-mode p {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Part 2 Speaking Mode */
+.speaking-mode {
+    background-color: #fbe9e7;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.speaking-mode p {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Examiner Animation */
+@keyframes examinerSpeaking {
+    0% { border-color: rgba(255, 255, 255, 0.8); }
+    50% { border-color: rgba(52, 152, 219, 1); }
+    100% { border-color: rgba(255, 255, 255, 0.8); }
+}
+
+.examiner-photo.speaking img {
+    animation: examinerSpeaking 1.5s infinite;
+}
+
+.examiner-photo.listening img {
+    border-color: var(--success-color);
+}
+
+/* Question Transition Animation */
+@keyframes questionFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.question {
+    animation: questionFadeIn 0.5s ease-out;
+}
+
+/* Part Transition */
+.part-transition {
+    text-align: center;
+    padding: 30px 0;
+    background-color: rgba(52, 152, 219, 0.1);
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.part-transition h3 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+/* Review Page Styles */
+.review-container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.review-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.review-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 5px;
+}
+
+.qa-pair {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.question-review, .answer-review {
+    margin-bottom: 15px;
+}
+
+.question-review h4 {
+    color: var(--secondary-color);
+    margin-bottom: 8px;
+}
+
+.answer-review h4 {
+    color: var(--success-color);
+    margin-bottom: 8px;
+}
+
+.transcript {
+    background-color: #f5f5f5;
+    padding: 12px;
+    border-radius: 4px;
+    border-left: 3px solid var(--success-color);
+    font-style: italic;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.play-question-btn, .play-answer-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.play-question-btn:hover {
+    background-color: #2980b9;
+}
+
+.play-answer-btn {
+    background-color: var(--success-color);
+}
+
+.play-answer-btn:hover {
+    background-color: #219a52;
+}
+
+.answer-section {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.question-hidden {
+    font-style: italic;
+    color: #666;
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+/* Two-column Review Layout */
+.review-wrapper {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    max-height: 600px;
+}
+
+.review-left-panel,
+.review-right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.review-panel-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 20px;
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.review-panel-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.review-panel-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Left Panel (Q&A Review) Specific Styles */
+.review-left-panel .review-section {
+    margin-bottom: 25px;
+}
+
+/* Right Panel (Report) Specific Styles */
+.review-right-panel {
+    background-color: #fafbfc;
+}
+
+.review-right-panel .review-panel-header {
+    background-color: var(--success-color);
+}
+
+/* Report Content Styles */
+.report-content {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.8;
+    color: #333;
+}
+
+.report-content h1 {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin: 20px 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--secondary-color);
+}
+
+.report-content h2 {
+    font-size: 1.3rem;
+    color: var(--secondary-color);
+    margin: 25px 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.report-content h3 {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    margin: 18px 0 10px 0;
+    font-weight: 600;
+}
+
+.report-content p {
+    margin: 8px 0;
+    color: #444;
+}
+
+.report-content ul {
+    margin: 10px 0;
+    padding-left: 25px;
+}
+
+.report-content li {
+    margin: 6px 0;
+    line-height: 1.7;
+}
+
+.report-content hr {
+    border: none;
+    border-top: 2px solid #e0e0e0;
+    margin: 25px 0;
+}
+
+.report-content strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.score-highlight {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1.05em;
+}
+
+.numbered-item {
+    margin: 10px 0;
+    padding-left: 5px;
+    font-weight: 500;
+}
+
+/* Report Loading State */
+.report-loading,
+.report-empty,
+.report-generating,
+.report-error {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}
+
+.report-loading i,
+.report-empty i,
+.report-generating i,
+.report-error i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.report-loading i {
+    color: var(--secondary-color);
+}
+
+.report-empty i {
+    color: #95a5a6;
+}
+
+.report-generating i {
+    color: var(--warning-color);
+}
+
+.report-error i {
+    color: var(--accent-color);
+}
+
+.report-loading p,
+.report-empty p,
+.report-generating p,
+.report-error p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+.report-hint {
+    font-size: 0.9rem !important;
+    color: #888 !important;
+    font-style: italic;
+}
+
+/* Scrollbar Styling for Review Panels */
+.review-panel-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.review-panel-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.review-panel-content::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 4px;
+}
+
+.review-panel-content::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cue-card {
+        padding: 15px;
+    }
+    
+    .preparation-mode, .speaking-mode {
+        padding: 10px;
+    }
+    
+    .review-section {
+        padding: 15px;
+    }
+    
+    .qa-pair {
+        padding: 12px;
+    }
+    
+    /* Stack review panels vertically on mobile */
+    .review-wrapper {
+        flex-direction: column;
+        max-height: none;
+    }
+    
+    .review-left-panel,
+    .review-right-panel {
+        max-height: 500px;
+    }
+    
+    .review-panel-content {
+        max-height: 400px;
+    }
+}

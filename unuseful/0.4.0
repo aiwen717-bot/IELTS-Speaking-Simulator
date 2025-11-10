@@ -1,0 +1,9 @@
+Defaulting to user installation because normal site-packages is not writeable
+Collecting sounddevice
+  Downloading sounddevice-0.5.3-py3-none-win_amd64.whl.metadata (1.6 kB)
+Requirement already satisfied: CFFI>=1.0 in c:\users\evan\appdata\roaming\python\python311\site-packages (from sounddevice) (2.0.0)
+Requirement already satisfied: pycparser in c:\users\evan\appdata\roaming\python\python311\site-packages (from CFFI>=1.0->sounddevice) (2.23)
+Downloading sounddevice-0.5.3-py3-none-win_amd64.whl (364 kB)
+   -------------------------------------- 364.0/364.0 kB 228.7 kB/s eta 0:00:00
+Installing collected packages: sounddevice
+Successfully installed sounddevice-0.5.3

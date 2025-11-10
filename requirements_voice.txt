@@ -1,0 +1,35 @@
+# Voice Recognition Dependencies
+# Install these packages for voice input functionality
+
+# Core speech recognition
+SpeechRecognition>=3.10.0
+
+# Audio recording and processing
+pyaudio>=0.2.11
+numpy>=1.21.0
+scipy>=1.7.0
+
+# Optional: OpenAI Whisper for offline speech recognition
+# Uncomment the following line if you want to use Whisper
+# openai-whisper>=20231117
+
+# Optional: Additional speech recognition engines
+# Uncomment as needed for specific engines
+
+# For Google Cloud Speech-to-Text
+# google-cloud-speech>=2.0.0
+
+# For Microsoft Azure Speech
+# azure-cognitiveservices-speech>=1.30.0
+
+# For IBM Watson Speech to Text
+# ibm-watson>=6.0.0
+
+# For Wit.ai
+# (No additional package needed, uses built-in support)
+
+# Audio file format support
+pydub>=0.25.1
+
+# For better audio device detection
+sounddevice>=0.4.0

@@ -1,0 +1,7 @@
+Defaulting to user installation because normal site-packages is not writeable
+Collecting pyaudio
+  Downloading PyAudio-0.2.14-cp311-cp311-win_amd64.whl.metadata (2.7 kB)
+Downloading PyAudio-0.2.14-cp311-cp311-win_amd64.whl (164 kB)
+   ---------------------------------------- 164.1/164.1 kB 1.1 MB/s eta 0:00:00
+Installing collected packages: pyaudio
+Successfully installed pyaudio-0.2.14

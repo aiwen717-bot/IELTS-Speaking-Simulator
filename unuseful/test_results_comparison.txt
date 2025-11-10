@@ -1,0 +1,16 @@
+=== Topic Extraction Results ===
+Topics: ['unusual meal', 'best friend', 'play basketball', 'graduation']
+
+=== Fallback Template Questions ===
+1. What impact does unusual meal have on society?
+2. How has best friend changed in recent years?
+3. Do you think play basketball will become more important in the future? Why?
+4. What are the advantages and disadvantages of graduation?
+5. How does best friend differ between urban and rural areas?
+
+=== Qwen Generated Questions ===
+1. How do you think the emotional significance of a meal, like the one described in the text, can influence the way people remember and value their experiences?
+2. In what ways do shared activities, such as playing basketball, contribute to the depth and longevity of friendships, especially during significant life transitions like graduation?
+3. Why do you think the setting of the last meal, in a familiar place like the dormitory rather than a restaurant, might have added to its emotional impact and the memories associated with it?
+4. How do you think the geographical separation after graduation, as experienced by the two friends, affects the nature of their friendship and the way they maintain their connection over time?
+5. What factors do you believe make certain moments, like the final meal before parting ways, more memorable and emotionally significant compared to other everyday experiences?

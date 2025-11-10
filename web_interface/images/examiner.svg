@@ -1,0 +1,7 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="200" height="200" fill="#3498db"/>
+<circle cx="100" cy="80" r="30" fill="#fff"/>
+<path d="M50 160c0-33.137 26.863-60 60-60s60 26.863 60 60v40H50v-40z" fill="#fff"/>
+<text x="100" y="190" text-anchor="middle" fill="#fff" font-family="Arial" font-size="12">EXAMINER</text>
+</svg>
+
