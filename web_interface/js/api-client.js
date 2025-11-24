@@ -21,7 +21,7 @@ class IELTSApiClient {
     }
     
     // Convert text to speech
-    async textToSpeech(text, voice = 'en-US-Neural2-F') {
+    async textToSpeech(text, voice = 'en-US-Neural2-A') {
         try {
             const response = await fetch(`${this.apiEndpoint}/text-to-speech`, {
                 method: 'POST',
@@ -194,7 +194,7 @@ class IELTSApiClient {
     }
     
     // Get audio URL
-    getAudioUrl(audioPath) {
+    getAudioUrl(audioPath, cacheBuster = null) {
         if (!audioPath) return null;
         
         // If it's already a full URL, return it
@@ -205,7 +205,9 @@ class IELTSApiClient {
         // Extract the filename from the path (handle both / and \ for Windows paths)
         const filename = audioPath.split(/[\/\\]/).pop();
         
-        return `${this.apiEndpoint}/audio/${filename}`;
+        // Add cache buster parameter if provided
+        const url = `${this.apiEndpoint}/audio/${filename}`;
+        return cacheBuster ? `${url}?v=${cacheBuster}` : url;
     }
 }
 

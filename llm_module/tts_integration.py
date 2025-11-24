@@ -50,7 +50,7 @@ class TTSIntegration:
             logger.warning("TTS module not found or could not be imported")
             self.tts_available = False
     
-    def text_to_speech(self, text: str, output_path: str, voice: str = "en-US-Neural2-F") -> bool:
+    def text_to_speech(self, text: str, output_path: str, voice: str = "en-US-Neural2-A") -> bool:
         """
         Convert text to speech using the TTS system.
         
@@ -70,28 +70,32 @@ class TTSIntegration:
             # Import TTS modules
             from TTS.api import TTS
             
-            # Initialize TTS with a high-quality model
-            # Try with a more natural sounding model first
+            # Initialize TTS with VCTK male voice model
+            # Try with VCTK multi-speaker model first (male voice)
             try:
-                logger.info("Using high-quality TTS model: tts_models/en/ljspeech/glow-tts")
-                tts = TTS(model_name="tts_models/en/ljspeech/glow-tts")
-                tts.tts_to_file(text=text, file_path=output_path)
+                logger.info("Using VCTK multi-speaker TTS model with male voice (p326)")
+                tts = TTS(model_name="tts_models/en/vctk/vits")
+                speakers = tts.speakers
+                if speakers:
+                    # Use p326 - a male speaker (British accent)
+                    # Other male speakers: p226, p227, p232, p243, p254, p256, p258, p259, p270, p273, p274, p278, p279, p281, p284, p285, p286, p287, p292, p298, p304, p311, p316, p334, p345, p360, p363, p374
+                    male_speaker = "p326" if "p326" in speakers else (
+                        "p256" if "p256" in speakers else (
+                            "p232" if "p232" in speakers else speakers[0]
+                        )
+                    )
+                    logger.info(f"Using male speaker: {male_speaker}")
+                    tts.tts_to_file(text=text, file_path=output_path, speaker=male_speaker)
+                else:
+                    # No speakers list available, try without speaker parameter
+                    tts.tts_to_file(text=text, file_path=output_path)
             except Exception as e:
-                logger.warning(f"Error with primary TTS model: {e}. Trying fallback model.")
+                logger.warning(f"Error with VCTK TTS model: {e}. Trying fallback model.")
                 try:
-                    # Fallback to VCTK model if available
-                    tts = TTS(model_name="tts_models/en/vctk/vits")
-                    speakers = tts.speakers
-                    if speakers:
-                        # Use the first speaker if available
-                        speaker = speakers[0]
-                        logger.info(f"Using speaker: {speaker}")
-                        tts.tts_to_file(text=text, file_path=output_path, speaker=speaker)
-                    else:
-                        # Last resort - use basic model
-                        logger.info("Switching to basic single-speaker model")
-                        tts = TTS(model_name="tts_models/en/ljspeech/tacotron2-DDC")
-                        tts.tts_to_file(text=text, file_path=output_path)
+                    # Fallback to ljspeech model
+                    logger.info("Switching to fallback model: tts_models/en/ljspeech/glow-tts")
+                    tts = TTS(model_name="tts_models/en/ljspeech/glow-tts")
+                    tts.tts_to_file(text=text, file_path=output_path)
                 except Exception as nested_e:
                     logger.error(f"Error with fallback TTS model: {nested_e}")
                     raise
@@ -104,7 +108,7 @@ class TTSIntegration:
             return False
     
     def questions_to_speech(self, questions: List[str], output_dir: str, 
-                           prefix: str = "question", voice: str = "en-US-Neural2-F") -> Dict[str, str]:
+                           prefix: str = "question", voice: str = "en-US-Neural2-A") -> Dict[str, str]:
         """
         Convert a list of questions to speech files.
         
@@ -132,7 +136,7 @@ class TTSIntegration:
         return results
     
     def batch_process(self, questions: List[str], output_dir: str, 
-                     combined: bool = False, voice: str = "en-US-Neural2-F") -> Dict[str, Any]:
+                     combined: bool = False, voice: str = "en-US-Neural2-A") -> Dict[str, Any]:
         """
         Process a batch of questions, converting them to speech.
         

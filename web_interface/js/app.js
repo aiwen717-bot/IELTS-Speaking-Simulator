@@ -130,7 +130,9 @@ async function playPart2Introduction() {
         
         if (response.status === 'success') {
             // Play the introduction audio directly from web_output directory
-            const audioUrl = apiClient.getAudioUrl(response.audio_path);
+            // Use cache_buster to force reload new audio
+            const audioUrl = apiClient.getAudioUrl(response.audio_path, response.cache_buster);
+            console.log('Playing Part 2 introduction from:', audioUrl);
             await playAudioFromUrl(audioUrl);
             
             // Wait for 1 second after introduction audio finishes

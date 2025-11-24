@@ -6,6 +6,6 @@
     "num_questions": 5,
     "tts_integration": {
         "enabled": true,
-        "voice": "en-US-Neural2-F"
+        "voice": "en-US-Neural2-A"
     }
 }

@@ -1,0 +1,19 @@
+# API Keys and sensitive configuration
+llm_module/config.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+
+# Output files
+voice_output/
+*.wav
+*.mp3
+
+# Logs
+*.log

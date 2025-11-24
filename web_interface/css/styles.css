@@ -45,6 +45,32 @@ h1 {
     margin-bottom: 10px;
 }
 
+/* 右上角浮动的远程页面按钮（不改变 header 布局） */
+.floating-remote-btn {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+    background-color: var(--secondary-color);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.floating-remote-btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.02);
+    transition: var(--transition);
+}
+
 /* Test Interface */
 .test-interface {
     display: flex;

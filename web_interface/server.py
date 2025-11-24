@@ -110,12 +110,10 @@ def generate_part2_introduction_audio():
         intro_text_path = os.path.join(WEB_OUTPUT_DIR, "part2_introduction.txt")
         intro_audio_path = os.path.join(WEB_OUTPUT_DIR, "part2_introduction.wav")
         
-        # Check if audio already exists
-        if os.path.exists(intro_audio_path):
-            logger.info(f"Part 2 introduction audio already exists: {intro_audio_path}")
-            return True
+        # Output the path to part2_introduction.txt file
+        logger.info(f"Part 2 introduction text file path: {intro_text_path}")
         
-        # Check if text exists
+        # Check if text file exists first
         if not os.path.exists(intro_text_path):
             logger.error(f"Part 2 introduction text not found: {intro_text_path}")
             return False
@@ -124,9 +122,17 @@ def generate_part2_introduction_audio():
         with open(intro_text_path, 'r', encoding='utf-8') as f:
             intro_text = f.read().strip()
         
+        # Log the actual content read from file
+        logger.info(f"Read Part 2 introduction text content (length={len(intro_text)}): {intro_text[:100]}...")
+        
         if not intro_text:
             logger.error("Part 2 introduction text is empty")
             return False
+        
+        # Check if audio already exists
+        if os.path.exists(intro_audio_path):
+            logger.info(f"Part 2 introduction audio already exists: {intro_audio_path}")
+            return True
         
         logger.info(f"Generating audio for Part 2 introduction: {intro_text[:50]}...")
         
@@ -319,18 +325,32 @@ def text_to_speech():
             output_file = os.path.join(TEMP_DIR, f"tts_{text_hash}.wav")
             from TTS.api import TTS as TTSApi
             
-            # Try several models in order of preference
+            # Try several models in order of preference (prioritize male voice VCTK model)
             tts_models = [
+                ("tts_models/en/vctk/vits", "p326"),  # Male voice - British accent
+                ("tts_models/en/vctk/vits", "p256"),  # Male voice - Scottish accent (fallback)
                 "tts_models/en/ljspeech/tacotron2-DDC",
                 "tts_models/en/ljspeech/glow-tts",
                 "tts_models/en/ljspeech/fast_pitch"
             ]
             
-            for model_name in tts_models:
+            for model_info in tts_models:
+                # Handle both tuple (model, speaker) and string (model only)
+                if isinstance(model_info, tuple):
+                    model_name, speaker = model_info
+                else:
+                    model_name = model_info
+                    speaker = None
+                
                 try:
-                    logger.info(f"Trying TTS model: {model_name}")
+                    logger.info(f"Trying TTS model: {model_name}" + (f" with speaker: {speaker}" if speaker else ""))
                     tts = TTSApi(model_name=model_name)
-                    tts.tts_to_file(text=text, file_path=output_file)
+                    
+                    # Use speaker if specified and available
+                    if speaker and hasattr(tts, 'speakers') and tts.speakers and speaker in tts.speakers:
+                        tts.tts_to_file(text=text, file_path=output_file, speaker=speaker)
+                    else:
+                        tts.tts_to_file(text=text, file_path=output_file)
                     
                     if os.path.exists(output_file):
                         logger.info(f"Generated audio with {model_name} at {output_file}")
@@ -361,12 +381,21 @@ def text_to_speech():
         except Exception as script_error:
             logger.error(f"Error in script-based TTS: {script_error}")
             
-            # Try direct TTS API method as fallback
+            # Try direct TTS API method as fallback (with male voice)
             output_file = os.path.join(TEMP_DIR, f"tts_{text_hash}.wav")
             try:
                 from TTS.api import TTS as TTSApi
-                tts = TTSApi(model_name="tts_models/en/ljspeech/tacotron2-DDC")
-                tts.tts_to_file(text=text, file_path=output_file)
+                # Try VCTK male voice first
+                try:
+                    tts = TTSApi(model_name="tts_models/en/vctk/vits")
+                    if hasattr(tts, 'speakers') and tts.speakers and "p326" in tts.speakers:
+                        tts.tts_to_file(text=text, file_path=output_file, speaker="p326")
+                    else:
+                        tts.tts_to_file(text=text, file_path=output_file)
+                except:
+                    # Fallback to ljspeech if VCTK fails
+                    tts = TTSApi(model_name="tts_models/en/ljspeech/tacotron2-DDC")
+                    tts.tts_to_file(text=text, file_path=output_file)
                 
                 if os.path.exists(output_file):
                     return jsonify({
@@ -668,7 +697,7 @@ def api_merge_answers():
 
 @app.route('/api/audio/<path:filename>')
 def serve_audio(filename):
-    """Serve audio files."""
+    """Serve audio files with cache control."""
     try:
         # Handle absolute paths (convert to just filename)
         filename = os.path.basename(filename)
@@ -676,23 +705,39 @@ def serve_audio(filename):
         # Check if the file exists in TEMP_DIR
         file_path = os.path.join(TEMP_DIR, filename)
         if os.path.exists(file_path):
-            return send_from_directory(TEMP_DIR, filename)
+            response = send_from_directory(TEMP_DIR, filename)
+            response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+            response.headers['Pragma'] = 'no-cache'
+            response.headers['Expires'] = '0'
+            return response
         
         # Check if the file exists in OUTPUT_DIR
         file_path = os.path.join(OUTPUT_DIR, filename)
         if os.path.exists(file_path):
-            return send_from_directory(OUTPUT_DIR, filename)
+            response = send_from_directory(OUTPUT_DIR, filename)
+            response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+            response.headers['Pragma'] = 'no-cache'
+            response.headers['Expires'] = '0'
+            return response
         
         # Check voice_output directory as well (used by voice_ielts_questions.py)
         voice_output_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'voice_output')
         file_path = os.path.join(voice_output_dir, filename)
         if os.path.exists(file_path):
-            return send_from_directory(voice_output_dir, filename)
+            response = send_from_directory(voice_output_dir, filename)
+            response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+            response.headers['Pragma'] = 'no-cache'
+            response.headers['Expires'] = '0'
+            return response
             
         # Check web_output directory as well
         file_path = os.path.join(WEB_OUTPUT_DIR, filename)
         if os.path.exists(file_path):
-            return send_from_directory(WEB_OUTPUT_DIR, filename)
+            response = send_from_directory(WEB_OUTPUT_DIR, filename)
+            response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+            response.headers['Pragma'] = 'no-cache'
+            response.headers['Expires'] = '0'
+            return response
         
         # File not found
         logger.error(f"Audio file not found: {filename}")
@@ -779,9 +824,14 @@ def get_part2_introduction():
                     'message': 'Failed to generate Part 2 introduction audio'
                 }), 500
         
+        # Add file modification time to bust browser cache
+        import time
+        mtime = os.path.getmtime(intro_audio_path)
+        
         return jsonify({
             'status': 'success',
-            'audio_path': intro_audio_path
+            'audio_path': intro_audio_path,
+            'cache_buster': str(int(mtime))  # Use file modification time as cache buster
         })
     except Exception as e:
         logger.error(f"Error getting Part 2 introduction: {e}")

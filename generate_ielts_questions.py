@@ -45,8 +45,8 @@ def parse_arguments():
     parser.add_argument('--tts', action='store_true', help='Convert questions to speech')
     parser.add_argument('--output_dir', type=str, default='./output', 
                         help='Directory to save output files (default: ./output)')
-    parser.add_argument('--voice', type=str, default='en-US-Neural2-F',
-                        help='Voice to use for TTS (default: en-US-Neural2-F)')
+    parser.add_argument('--voice', type=str, default='en-US-Neural2-A',
+                        help='Voice to use for TTS (default: en-US-Neural2-A)')
     parser.add_argument('--combined', action='store_true', 
                         help='Create a combined audio file with all questions')
     

@@ -1,0 +1,12 @@
+{
+    "qwen_api_key": "YOUR_QWEN_API_KEY_HERE",
+    "qwen_model": "qwen-max",
+    "qwen_api_base": "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation",
+    "temperature": 0.7,
+    "max_tokens": 500,
+    "num_questions": 5,
+    "tts_integration": {
+        "enabled": true,
+        "voice": "en-US-Neural2-A"
+    }
+}

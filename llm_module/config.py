@@ -19,7 +19,7 @@ class Config:
         "num_questions": 5,
         "tts_integration": {
             "enabled": True,
-            "voice": "en-US-Neural2-F"
+            "voice": "en-US-Neural2-A"
         },
         "speech_recognition": {
             "engine": "google",

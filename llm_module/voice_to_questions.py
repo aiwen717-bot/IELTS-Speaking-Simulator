@@ -329,7 +329,7 @@ class VoiceToQuestions:
                             questions,
                             output_dir,
                             combined=True,
-                            voice="en-US-Neural2-F"
+                            voice="en-US-Neural2-A"
                         )
                         
                         results['audio_files'] = tts_result['individual_files']
@@ -454,7 +454,7 @@ class VoiceToQuestions:
                             questions,
                             output_dir,
                             combined=True,
-                            voice="en-US-Neural2-F"
+                            voice="en-US-Neural2-A"
                         )
                         
                         results['audio_files'] = tts_result['individual_files']

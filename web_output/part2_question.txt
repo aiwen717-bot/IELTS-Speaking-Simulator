@@ -1,7 +1,6 @@
-Topic: Describe a toy you had in your childhood.
+Topic: Describe a time when you worked with a group of foreign students.
 You should say:
-- What kind of toy it was
-- When did you get the toy
-- Whether you played with the toy by yourself or with other people
-- How you played it
-- How you felt about it
+- Where the group was from?
+- What the project was about?
+- How you felt during the collaboration?
+- And explain what you learned from the experience?

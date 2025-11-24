@@ -93,8 +93,8 @@ Examples:
                         help='Skip saving transcript file')
     
     # TTS settings
-    parser.add_argument('--voice', type=str, default='en-US-Neural2-F',
-                        help='Voice to use for TTS (default: en-US-Neural2-F)')
+    parser.add_argument('--voice', type=str, default='en-US-Neural2-A',
+                        help='Voice to use for TTS (default: en-US-Neural2-A)')
     
     # Utility options
     parser.add_argument('--list-devices', action='store_true',

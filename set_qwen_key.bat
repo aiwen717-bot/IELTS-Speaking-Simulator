@@ -22,7 +22,7 @@ echo     "max_tokens": 500,>> llm_module\config.json
 echo     "num_questions": 5,>> llm_module\config.json
 echo     "tts_integration": {>> llm_module\config.json
 echo         "enabled": true,>> llm_module\config.json
-echo         "voice": "en-US-Neural2-F">> llm_module\config.json
+echo         "voice": "en-US-Neural2-A">> llm_module\config.json
 echo     }>> llm_module\config.json
 echo }>> llm_module\config.json
 
