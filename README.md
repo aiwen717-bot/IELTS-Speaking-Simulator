@@ -232,7 +232,7 @@ IELTS-Speaking-Simulator/
 
 环境配置，可以参考reference_environment.yaml以及characters_third_party/Musetalk中的Readme.md
 
-#运行
+运行:
 ```bash
 cd characters_third_party/Musetalk
 python ielts_app.py
